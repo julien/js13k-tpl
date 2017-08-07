@@ -1,0 +1,29 @@
+{
+  "description": " ",
+  "repository": " ",
+  "license": "WTFPL 2.0",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
+    "bestzip": "^1.1.4",
+    "browserify": "^14.4.0",
+    "budo": "^10.0.4",
+    "html-minifier": "^3.5.3",
+    "htmlprocessor": "^0.2.4",
+    "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
+    "uglify-js": "^3.0.27"
+  },
+  "scripts": {
+    "start": "budo src/main.js:bundle.js --live -- -d -e src/main.js -t [babelify --comments false --presets es2015]",
+    "prebuild": "mkdirp build",
+    "build": "npm run build:js && npm run build:html && npm run copy && bestzip game.zip build/*",
+    "build:js": "browserify -d -e src/main.js -t [babelify --comments false --presets es2015] | uglifyjs -cm > build/bundle.min.js",
+    "build:html": "npm run html:min",
+    "html:process": "htmlprocessor index.html -o build/index.html",
+    "html:min": "npm run html:process && html-minifier --collapse-whitespace build/index.html -o build/index.html",
+    "copy": "npm run copy:assets",
+    "copy:assets": "ncp src/assets/ build/assets/"
+  }
+}
