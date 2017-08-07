@@ -1,7 +1,7 @@
 js13k-tpl
 ---------
 
-Template project for #js13k games.
+Template project for [js13k](http://js13kgames.com/) games.
 
 Requirements
 ------------
