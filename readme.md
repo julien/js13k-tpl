@@ -32,3 +32,5 @@ npm start
 npm run build
 ```
 
+This will transpile and minify JS files, minify the HTML, copy assets and package everything in a zip archive.
+
